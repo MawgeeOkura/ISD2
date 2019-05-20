@@ -73,6 +73,22 @@ public class DBManager {
         
     }
     
+    public void addCustomer(String firstname ,String lastname ,String password ,String email ,String phone ,String createdate ,int paymentdetailsid) throws SQLException {
+        
+        String addCustomer = "insert into customer" + "values ('" + firstname + "' , '" + lastname + "','" + password + "','" + email + "', '" + phone + "' , '" + createdate + "' , '" + paymentdetailsid + "')'";
+                
+        boolean customeradded = st.executeUpdate(addCustomer) >0;
+        
+        if(customeradded){
+            
+            System.out.println("customer added");
+            
+        } else {
+            
+            System.out.println("customer failed to be added");
+        }
+    }
+    
     private ArrayList<Staff> setStaffs(ResultSet resObj) throws SQLException {
          ArrayList<Staff> staffs = new ArrayList<>();
          while (resObj.next()) {

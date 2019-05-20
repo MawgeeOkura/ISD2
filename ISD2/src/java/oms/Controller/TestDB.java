@@ -39,6 +39,8 @@ public class TestDB {
                 System.out.println("Found Movie: "+m.toString());
             }
             
+            int number = 1;
+            db.addCustomer(email, email, email, email, email, email, number);
             
            
             

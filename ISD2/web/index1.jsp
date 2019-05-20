@@ -5,7 +5,7 @@
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<%@page import="oms.Model.*" %>
+<%@page import="oms.model.*" %>
 <link href="CSS.css" rel="stylesheet" type="text/css">
 
 <!-- JSP retrieves data when user logins or registers. variables are set to 'error' 
@@ -49,7 +49,7 @@ so that when index page is run, a null pointer exception won't occur since the o
    
    <!-- Creation of session -->     
 <%
-            oms.Model.Register loggedin = new oms.Model.Register(firstname,lastname,email,password,phone);
+            oms.model.Register loggedin = new oms.model.Register(firstname,lastname,email,password,phone);
             session.setAttribute("loggedin", loggedin);
             
             

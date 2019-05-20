@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="oms.Model.*" %>
+<%@page import="oms.model.*" %>
 <link href="CSS.css" rel="stylesheet" type="text/css">
 
 

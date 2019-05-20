@@ -5,8 +5,7 @@
  */
 package oms.DAO;
 
-import oms.Model.Movie;
-import oms.Model.Staff;
+import oms.Model.*;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -42,7 +41,37 @@ public class DBManager {
         return setMovies(resObj);
     }
     
-    
+    public Customer findCustomer(String email) throws SQLException {
+        
+        String searchCustomer = "select * from customer where email='"+ email + "'";
+        
+        ResultSet result = st.executeQuery(searchCustomer);
+        
+        boolean hasCustomer = result.next();
+        
+        Customer CustomerDB = null;
+        
+        if(hasCustomer){
+            
+            String sID = result.getString("ID");
+            String sFirstname = result.getString("firstName");
+            String sLastname = result.getString("lastName");
+            String sPassword = result.getString("password");
+            String sEmail= result.getString("email");
+            String sPhone = result.getString("phone");
+            String sCreateDate = result.getString("createDate");
+            String sPaymentdetailsid = result.getString("paymentdetailsid");
+            
+            CustomerDB = new Customer (Integer.parseInt(sID),sFirstname , sLastname, sPassword , sEmail, sPhone , sCreateDate , Integer.parseInt(sPaymentdetailsid));
+            
+            
+        }
+        
+        result.close();
+        
+        return CustomerDB;
+        
+    }
     
     private ArrayList<Staff> setStaffs(ResultSet resObj) throws SQLException {
          ArrayList<Staff> staffs = new ArrayList<>();

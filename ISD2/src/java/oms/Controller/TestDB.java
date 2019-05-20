@@ -11,9 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import oms.DAO.DBConnector;
 import oms.DAO.DBManager;
-import oms.Model.Movie;
-import oms.Model.Staff;
-
+import oms.Model.*;
 /**
  *
  * @author clint
@@ -31,10 +29,19 @@ public class TestDB {
                 System.out.println("Found Staff: "+s.toString());
             }
             
+            String email= "Mawgee";
+            Customer allCustomer = db.findCustomer(email);
+            System.out.println("found Customer" + allCustomer.toString());
+             
+            
             ArrayList<Movie> allMovies = db.getAllMovies();
             for (Movie m : allMovies) {
                 System.out.println("Found Movie: "+m.toString());
             }
+            
+            
+           
+            
                     
         } catch (ClassNotFoundException cx) {
             System.out.println("Class Not Found Exception");

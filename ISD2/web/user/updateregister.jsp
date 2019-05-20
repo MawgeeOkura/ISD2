@@ -5,7 +5,7 @@
 --%>
 <link href="../CSS.css" rel="stylesheet" type="text/css">
 <%@include file="../header.jsp"%>
-<%@include file="../footer.jsp"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,45 +18,51 @@
             Register viewuser = (Register) session.getAttribute("loggedin");
             
             %>     
-     <%!
-        String firstname;
-        String lastname;
-        String email;
-        String password;
-         %>
+  
             
      <% 
-    if(request.getParameter("firstname") == null){
-        firstname = viewuser.getFirstname();}
-    else{
+    if(request.getParameter("firstname") != null){
+        
         viewuser.setFirstname(request.getParameter("firstname"));
+        
     }%>
     
      <% 
-    if(request.getParameter("lastname") == null){
-        lastname = viewuser.getLastname();}
-    else{ 
+    if(request.getParameter("lastname") != null){
+        
         viewuser.setLastname(request.getParameter("lastname"));
+        
     }%>
     
     <% 
-    if(request.getParameter("email") == null){
-        email = viewuser.getEmail();}
-    else{
+    if(request.getParameter("email") != null){
+  
         viewuser.setEmail(request.getParameter("email"));
+        
     }%>
     
     
      <%
-    if(request.getParameter("password") == null){
-        password = viewuser.getPassword();}
-    else{
+    if(request.getParameter("password") != null){
+       
        viewuser.setPassword(request.getParameter("password"));
+       
+    }%>
+    
+      <% 
+    if(request.getParameter("phonenumber") != null){
+        viewuser.setPhone(Integer.parseInt(request.getParameter("phonenumber")));
     }%>
             
-   
+      <%
+        String firstname = viewuser.getFirstname(); 
+        String lastname  = viewuser.getLastname();
+        String email     = viewuser.getEmail();
+        String password  = viewuser.getPassword();
+        int phone        = viewuser.getPhone();
+         %>
             
-    <% int phone = 123;%> 
+ <%@include file="../footer.jsp"%>
     </head>
     <body>
         <h1> You have successfully updated account details</h1> </br> 
@@ -73,16 +79,7 @@
             
             </br>
          
-        <!--    <input type="button" <c:if test="${!disabled}"><c:out value="disabled='disabled'"/></c:if>">
-            
-            <c:choose>
-                    <c:when test="${!disabled}">
-                            <button  value="SendEmail" disabled="disabled" > </button>
-                    </c:when>
-            <c:otherwise>
-                    <input type="submit" value="SendEmail"  >
-              </c:otherwise>
-</c:choose> --> 
+      
         </div> 
     </body>
 </html>

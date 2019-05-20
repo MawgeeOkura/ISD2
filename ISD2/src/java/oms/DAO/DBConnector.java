@@ -17,7 +17,7 @@ public class DBConnector extends DB {
     
     public DBConnector() throws ClassNotFoundException, SQLException {
         Class.forName(driver); // not sure if this works for mysql
-        conn = DriverManager.getConnection(URL+db, dbUser, dbPass);
+        conn = DriverManager.getConnection(URL, dbUser, dbPass);
     }
     
     public Connection openConnection() {

@@ -19,6 +19,7 @@
             String email;
             String phone;
             Boolean disabled;
+            String notice;
             
             %>
         
@@ -30,6 +31,7 @@
             
             <%
                 if(viewuser.getEmail() != "error"){
+                    notice   = ""; 
                     disabled = false;
                     firstname = viewuser.getFirstname();
                     lastname  = viewuser.getLastname();
@@ -38,7 +40,8 @@
                 } 
                 else{
                     disabled = true;
-                    firstname = "Please login to view account details";
+                    notice = "Please login to view details"; 
+                    firstname = "";
                     lastname = "";
                     email    = "";
                     phone    = "";
@@ -52,6 +55,7 @@
         
         <h2>View Account Details </h2>
         
+        <b> <p><%= notice %> </p> </b> </br>
         <div class="container">
             
             <label> First Name: </label> <%= firstname %> </br>

@@ -14,9 +14,9 @@
              String firstname;
              String lastname;
              String email;
-             String phone;
+             int phone;
              String password;
-             
+             String message1;
            %> 
         
         <%  
@@ -28,21 +28,22 @@
             
          <%
                 if(updateuser.getEmail() != "error"){
-                    
+                    message1  = "";
                     firstname = updateuser.getFirstname();
                     lastname  = updateuser.getLastname();
                     email     = updateuser.getEmail();
-                    phone     = Integer.toString(updateuser.getPhone());
+                    phone     = updateuser.getPhone();
                     password  = updateuser.getPassword();
                 } 
                 else{
-                 
-                    firstname = "Please login to view account details";
+                    message1 ="Please login to update or delete details";
+                    firstname = "";
                     lastname = "";
                     email    = "";
-                    phone    = "";
+                    phone    = 0;
                     password = "";
-                    
+                   
+                   
                 }
                 
                 
@@ -55,42 +56,54 @@
    
       
     </head>
-    <body>
+    
+   <script> 
+       function checkdisable(){
+           
+           if(updateuser.getEmail().equals("error")){
+               
+               document.getElementById("email").disabled=true;
+           
+       }
+    </script>  
+    <body onload="checkdisable()">
         
         <h2>Update Account Details </h2>
         
-        <div class="container">
+        <b><p><%= message1 %>  </p></b> </br>
+        
+        <div id="updatedelete" class="container">
             
          <form action="updateregister.jsp" method="POST">
             <tr>
                 <td> <label> email: </label> </td>
-                <td><input type="text" name="email" placeholder=" <%= email %> " > <br> <br> </td>
+                <td><input id="email" type="text" name="email" value="<%=email%>" > <br> <br> </td>
             </tr>
             
             <tr>
                 <td> <label> firstname: </label> </td> 
-                <td> <input type="text" name="firstname" placeholder="  <%= firstname %> " > <br> <br> </td>
+                <td> <input type="text" name="firstname" value="<%=firstname%>" > <br> <br> </td>
             </tr>
             
             <tr>
                 <td> <label> lastname: </label> </td> 
-                <td> <input type="text" name="lastname" placeholder="  <%= lastname %>" > <br> <br> </td>
+                <td> <input type="text" name="lastname" value="<%=lastname%>"> <br> <br> </td>
             </tr>
            
             
             <tr>
                 <td> <label> password:</label> </td>
-                <td> <input type="password" name="password" placeholder=" <%= password %> " > <br> <br>  </td> 
+                <td> <input type="password" name="password" value="<%=password%>" > <br> <br>  </td> 
             
             </tr>
             
              <tr>
                 <td> <label> phonenumber: </label> </td> 
-                <td> <input type="text" name="phonenumber" placeholder="  <%= phone %>" > <br> <br> </td>
+                <td> <input type="text" name="phonenumber" value="<%=phone%>"><br> <br> </td>
             </tr>
           
- 
-            <input type="submit" name="submit"> 
+        
+            <input id="update" type="submit" name="submit" value="update" >   <a href="deleteregister.jsp"><input type="button" value="Delete account"></a>
         </form>
      
         </div> 

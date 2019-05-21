@@ -7,6 +7,8 @@ package oms.Controller;
 
 import oms.Model.*;
 import oms.DAO.DBManager;
+import java.sql.*;
+import java.util.ArrayList;
 /**
  *
  * @author Max.Okura
@@ -14,13 +16,17 @@ import oms.DAO.DBManager;
 public class Controller {
 
     public Controller() {
-        oms.Model.Customer Customer = new oms.Model.Customer();
+        this.manager = new DBManager();
        
     }
     
-    public void registerCustomer(){
+    DBManager manager;
+    
+    
+    public void registerCustomer(String firstname, String lastname , String password , String email , String phone , String createdate , String paymentdetailsid) throws SQLException{
         
-        
+        manager.addCustomer(firstname, lastname, password, email, phone, createdate, paymentdetailsid);
+    
         
     }
     

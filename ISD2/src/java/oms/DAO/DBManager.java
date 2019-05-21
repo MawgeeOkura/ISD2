@@ -22,6 +22,10 @@ public class DBManager {
     public DBManager(Connection conn) throws SQLException {
         st = conn.createStatement();
     }
+
+    public DBManager() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     public ArrayList<Staff> getAllStaff() throws SQLException {
         query = "Select * FROM Staff";

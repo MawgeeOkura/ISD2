@@ -30,8 +30,8 @@ public class TestDB {
             }
             
             String email= "Mawgee";
-            Customer allCustomer = db.findCustomer(email);
-            System.out.println("found Customer" + allCustomer.toString());
+             Customer allCustomer = db.findCustomer(email);
+             System.out.println("found Customer" + allCustomer.toString());
              
             
             ArrayList<Movie> allMovies = db.getAllMovies();
@@ -39,11 +39,16 @@ public class TestDB {
                 System.out.println("Found Movie: "+m.toString());
             }
             
-            int number = 1;
-            db.addCustomer(email, email, email, email, email, email, number);
+            String date ="2019-05-21";
+            String memes ="hi";
+            String number = "1";
+            db.addCustomer(email, email, email, email, email, date, number);
             
-           
+           //find customer and delete based on ID 
             
+           int ID=4;
+           db.updateCustomer(ID, memes, memes, memes, memes, date, date, number);
+                
                     
         } catch (ClassNotFoundException cx) {
             System.out.println("Class Not Found Exception");

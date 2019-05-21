@@ -5,10 +5,23 @@
  */
 package oms.Controller;
 
+import oms.Model.*;
+import oms.DAO.DBManager;
 /**
  *
  * @author Max.Okura
  */
 public class Controller {
+
+    public Controller() {
+        oms.Model.Customer Customer = new oms.Model.Customer();
+       
+    }
+    
+    public void registerCustomer(){
+        
+        
+        
+    }
     
 }

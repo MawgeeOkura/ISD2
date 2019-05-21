@@ -41,52 +41,63 @@ public class DBManager {
         return setMovies(resObj);
     }
     
-    public Customer findCustomer(String email) throws SQLException {
+     public Customer findCustomer(String email) throws SQLException {
         
-        String searchCustomer = "select * from customer where email='"+ email + "'";
+        query = "select * from customer where email='"+ email + "'";
         
-        ResultSet result = st.executeQuery(searchCustomer);
+        resObj = st.executeQuery(query);
         
-        boolean hasCustomer = result.next();
+        boolean hasCustomer = resObj.next();
         
         Customer CustomerDB = null;
         
         if(hasCustomer){
             
-            String sID = result.getString("ID");
-            String sFirstname = result.getString("firstName");
-            String sLastname = result.getString("lastName");
-            String sPassword = result.getString("password");
-            String sEmail= result.getString("email");
-            String sPhone = result.getString("phone");
-            String sCreateDate = result.getString("createDate");
-            String sPaymentdetailsid = result.getString("paymentdetailsid");
+            String sID = resObj.getString("ID");
+            String sFirstname = resObj.getString("firstName");
+            String sLastname = resObj.getString("lastName");
+            String sPassword = resObj.getString("password");
+            String sEmail= resObj.getString("email");
+            String sPhone = resObj.getString("phone");
+            String sCreateDate = resObj.getString("createDate");
+            String sPaymentdetailsid = resObj.getString("paymentdetailsid");
             
             CustomerDB = new Customer (Integer.parseInt(sID),sFirstname , sLastname, sPassword , sEmail, sPhone , sCreateDate , Integer.parseInt(sPaymentdetailsid));
             
             
         }
         
-        result.close();
+        resObj.close();
         
         return CustomerDB;
         
+    }  
+    
+    public void addCustomer(String firstname ,String lastname ,String password ,String email ,String phone,String createdate ,String paymentdetailsid) throws SQLException {
+       
+    query = "INSERT INTO Customer (FIRSTNAME,LASTNAME,PASSWORD,EMAIL,PHONE,CREATEDATE,PAYMENTDETAILSID) values ('"+firstname+"','"+lastname+"','"+password+"','"+email+"','"+phone+"','"+createdate+"',"+paymentdetailsid+")";
+                
+    st.executeUpdate(query);
+        
+     
     }
     
-    public void addCustomer(String firstname ,String lastname ,String password ,String email ,String phone ,String createdate ,int paymentdetailsid) throws SQLException {
+    
+    public void updateCustomer(int ID,String firstname ,String lastname ,String password ,String email ,String phone,String createdate ,String paymentdetailsid) throws SQLException {
+       
+    query = "UPDATE Customer SET FIRSTNAME = '"+firstname +"'  , LASTNAME ='"+lastname+"' , PASSWORD = '"+password+"' , EMAIL = '"+email+"' , PHONE = '"+phone+"' , CREATEDATE='"+createdate+"' , PAYMENTDETAILSID= "+paymentdetailsid+" where ID="+ID+"";
+   
+    st.executeUpdate(query);
         
-        String addCustomer = "insert into customer" + "values ('" + firstname + "' , '" + lastname + "','" + password + "','" + email + "', '" + phone + "' , '" + createdate + "' , '" + paymentdetailsid + "')'";
-                
-        boolean customeradded = st.executeUpdate(addCustomer) >0;
+     
+    }
+    
+    public void deleteCustomer(int ID) throws SQLException{
+    
+    query = "DELETE FROM CUSTOMER WHERE ID ="+ID+"";
+    st.executeUpdate(query);
         
-        if(customeradded){
-            
-            System.out.println("customer added");
-            
-        } else {
-            
-            System.out.println("customer failed to be added");
-        }
+        
     }
     
     private ArrayList<Staff> setStaffs(ResultSet resObj) throws SQLException {

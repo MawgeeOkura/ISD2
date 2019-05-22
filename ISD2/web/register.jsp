@@ -25,7 +25,7 @@
             First check if account already exists. If it does not exist then add but if it already does then show warning-->
         
             
-        <form action="${pageContext.request.contextPath}/RegisterServelet" method="POST">
+        <form action="registeradd.jsp" method="POST">
             <tr>
                 <td> <label> email: </label> </td>
                 <td><input type="text" name="email" required> <br> <br> </td>

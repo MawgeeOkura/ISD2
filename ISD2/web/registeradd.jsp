@@ -5,7 +5,6 @@
 --%>
 
 <%@page import="oms.Model.*"%>
-<%@page import="oms.Controller.Controller.*"%>
 <%@page import="oms.DAO.*"%>
 <%@page import="java.util.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -34,26 +33,19 @@
             
             Customer customer = manager.findCustomer(email); //difference between customer and register is that anyone can be registered not everyone can be customer
             
-            if (customer != null) {
+            if (customer == null) {
                 
-                
-                response.sendRedirect("login.jsp");  
-                
-            }else{
                 manager.addCustomer(firstname,lastname ,email , password ,phone , createdate , paymentdetailsid);
-                response.sendRedirect("index1.jsp");                               
+                response.sendRedirect("index1.jsp");  
+               
+            }else{
+                 response.sendRedirect("login.jsp");  
+                                             
             }             
                 %>
         
        
-        
-        <%
-            oms.Model.Register loggedin = new oms.Model.Register(firstname,lastname,email,password,Integer.parseInt(phone));
-            session.setAttribute("loggedin", loggedin);
-            
-            
-            %>
-        
+       
         
      
         

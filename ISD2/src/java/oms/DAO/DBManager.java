@@ -68,7 +68,7 @@ public class DBManager {
             
             CustomerDB = new Customer (Integer.parseInt(sID),sFirstname , sLastname, sPassword , sEmail, sPhone , sCreateDate , Integer.parseInt(sPaymentdetailsid));
             
-            
+             System.out.println("customerfound");
         }
         
         resObj.close();

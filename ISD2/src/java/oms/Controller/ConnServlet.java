@@ -48,6 +48,7 @@ public class ConnServlet extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+        session.setAttribute("manager", manager);
     }
     
     @Override

@@ -43,7 +43,7 @@ public class TestDB {
             String memes ="hi";
             String number = "1";
             db.addCustomer(email, email, email, email, email, date, number);
-            
+            db.findCustomer(email);
            //find customer and delete based on ID 
             
            int ID=4;

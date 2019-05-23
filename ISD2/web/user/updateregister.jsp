@@ -5,7 +5,9 @@
 --%>
 <link href="../CSS.css" rel="stylesheet" type="text/css">
 <%@include file="../header.jsp"%>
-
+<%@page import="oms.Model.*"%>
+<%@page import="oms.DAO.*"%>
+<%@page import="java.util.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,50 +18,18 @@
          <%  
           
             Register viewuser = (Register) session.getAttribute("loggedin");
-            
+            DBManager manager = (DBManager)session.getAttribute("db");
+             Customer customer = manager.findCustomer(viewuser.getEmail());
             %>     
   
-            
-     <% 
-    if(request.getParameter("firstname") != null){
-        
-        viewuser.setFirstname(request.getParameter("firstname"));
-        
-    }%>
-    
-     <% 
-    if(request.getParameter("lastname") != null){
-        
-        viewuser.setLastname(request.getParameter("lastname"));
-        
-    }%>
-    
-    <% 
-    if(request.getParameter("email") != null){
-  
-        viewuser.setEmail(request.getParameter("email"));
-        
-    }%>
-    
-    
-     <%
-    if(request.getParameter("password") != null){
-       
-       viewuser.setPassword(request.getParameter("password"));
-       
-    }%>
-    
-      <% 
-    if(request.getParameter("phonenumber") != null){
-        viewuser.setPhone(Integer.parseInt(request.getParameter("phonenumber")));
-    }%>
+           
             
       <%
-        String firstname = viewuser.getFirstname(); 
-        String lastname  = viewuser.getLastname();
-        String email     = viewuser.getEmail();
-        String password  = viewuser.getPassword();
-        int phone        = viewuser.getPhone();
+        String firstname = customer.getFirstName(); 
+        String lastname  = customer.getLastName();
+        String email     = customer.getEmail();
+        String password  = customer.getPassword();
+        String phone     = customer.getPhone();
          %>
             
  <%@include file="../footer.jsp"%>

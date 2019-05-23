@@ -24,20 +24,12 @@ public class TestDB {
             Connection conn = connector.openConnection();
             DBManager db = new DBManager(conn);
             
-            ArrayList<Staff> allStaff = db.getAllStaff();
-            for (Staff s : allStaff) {
-                System.out.println("Found Staff: "+s.toString());
-            }
-            
-            String email= "Mawgee";
+           
+            String email= "33";
              Customer allCustomer = db.findCustomer(email);
              System.out.println("found Customer" + allCustomer.toString());
              
-            
-            ArrayList<Movie> allMovies = db.getAllMovies();
-            for (Movie m : allMovies) {
-                System.out.println("Found Movie: "+m.toString());
-            }
+          
             
             String date ="2019-05-21";
             String memes ="hi";
@@ -47,7 +39,7 @@ public class TestDB {
            //find customer and delete based on ID 
             
            int ID=4;
-           db.updateCustomer(ID, memes, memes, memes, memes, date, date, number);
+           db.updateCustomer(ID, memes, memes,  memes, date, date, number);
                 
                     
         } catch (ClassNotFoundException cx) {

@@ -6,6 +6,9 @@
 <link href="../CSS.css" rel="stylesheet" type="text/css">
 <%@include file="../header.jsp"%>
 <%@include file="../footer.jsp"%>
+<%@page import="oms.Model.*"%>
+<%@page import="oms.DAO.*"%>
+<%@page import="java.util.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,10 +25,14 @@
             String notice;
             
             %>
-        
-        <%  
-          
-            Register viewuser = (Register) session.getAttribute("loggedin");
+         <%  
+            DBManager manager = (DBManager)session.getAttribute("db");
+             Register viewuser = (Register) session.getAttribute("loggedin");
+           %>
+           
+    
+              <%  String email = viewuser.getEmail();
+               Customer customer = manager.findCustomer(email);     
             %> 
             
             
@@ -33,8 +40,8 @@
                 if(viewuser.getEmail() != "error"){
                     notice   = ""; 
                     disabled = false;
-                    firstname = viewuser.getFirstname();
-                    lastname  = viewuser.getLastname();
+                    firstname = customer.getFirstName();
+                    lastname  = customer.getLastName();
                     email     = viewuser.getEmail();
                     phone     = Integer.toString(viewuser.getPhone());
                 } 

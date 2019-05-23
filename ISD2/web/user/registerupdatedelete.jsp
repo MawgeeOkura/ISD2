@@ -6,6 +6,9 @@
 <link href="../CSS.css" rel="stylesheet" type="text/css">
 <%@include file="../header.jsp"%>
 <%@include file="../footer.jsp"%>
+<%@page import="oms.Model.*"%>
+<%@page import="oms.DAO.*"%>
+<%@page import="java.util.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -13,24 +16,27 @@
        <%!  
              String firstname;
              String lastname;
-             String email;
+             
              int phone;
              String password;
              String message1;
            %> 
         
         <%  
-          
+            DBManager manager = (DBManager)session.getAttribute("db");
             Register updateuser = (Register) session.getAttribute("loggedin");
-                 
+           %>
+           
+           <%  String email = updateuser.getEmail();
+               Customer customer = manager.findCustomer(email);     
             %> 
             
             
          <%
                 if(updateuser.getEmail() != "error"){
                     message1  = "";
-                    firstname = updateuser.getFirstname();
-                    lastname  = updateuser.getLastname();
+                    firstname = customer.getFirstName();
+                    lastname  = customer.getLastName();
                     email     = updateuser.getEmail();
                     phone     = updateuser.getPhone();
                     password  = updateuser.getPassword();
@@ -48,6 +54,9 @@
                 
                 
                 %>
+                
+                
+   
             
 <html>
     <head>
@@ -56,15 +65,18 @@
    
       
     </head>
-    
-   <script> 
-       function checkdisable(){
-           
-           if(updateuser.getEmail().equals("error")){
-               
-               document.getElementById("email").disabled=true;
-           
-       }
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>    
+    <script type="text/javascript">
+      $(function () {
+            $("#delete").click(function (e) {
+                if (confirm("Are you sure you want to delete account?")) {
+                    
+                    window.location.replace("deleteregister.jsp");
+                } else {
+                   
+                }
+            });
+        });  
     </script>  
     <body onload="checkdisable()">
         
@@ -74,10 +86,10 @@
         
         <div id="updatedelete" class="container">
             
-         <form action="updateregister.jsp" method="POST">
+         <form action="registerupdateaction.jsp" method="POST">
             <tr>
                 <td> <label> email: </label> </td>
-                <td><input id="email" type="text" name="email" value="<%=email%>" > <br> <br> </td>
+                <td><input type="text" name="email" value="<%=email%>" disabled > <br> <br> </td>
             </tr>
             
             <tr>
@@ -103,8 +115,9 @@
             </tr>
           
         
-            <input id="update" type="submit" name="submit" value="update" >   <a href="deleteregister.jsp"><input type="button" value="Delete account"></a>
+            <input id="update" type="submit" name="submit" value="update" >  <input type="button" id="delete" value="Delete account"></a>
         </form>
+            
      
         </div> 
     </body>

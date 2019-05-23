@@ -6,6 +6,9 @@
 <link href="../CSS.css" rel="stylesheet" type="text/css">
 <%@include file="../header.jsp"%>
 <%@include file="../footer.jsp"%>
+<%@page import="oms.Model.*"%>
+<%@page import="oms.DAO.*"%>
+<%@page import="java.util.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,11 +18,23 @@
     </head>
     <body>
         
-           <%  
+          
+            
+            
+              <%  
+          
+            Register viewuser = (Register) session.getAttribute("loggedin");
+            DBManager manager = (DBManager)session.getAttribute("db");
+             Customer customer = manager.findCustomer(viewuser.getEmail());
+             manager.deleteCustomer(customer.getId());
+            %>  
+            
+             <%  
             session.invalidate();
             %>    
             
             <% response.setHeader("Refresh", "5;url=../index1.jsp"); %>.
+            
         
         
         <h1>Your account has been deleted</h1>

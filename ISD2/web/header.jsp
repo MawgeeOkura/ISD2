@@ -98,7 +98,7 @@ String link;
     <div class="dropdown-content">
         <a href="../user/accesslogs.jsp">View Access Logs</a>
         <a href="../user/registerview.jsp">View Account Details</a>
-        <a href="../user/registerupdatedelete.jsp">Update/Delete Account Details</a>
+        <a href="../user/registercheckaction.jsp">Update/Delete Account Details</a>
  
     </div>
     </div> 

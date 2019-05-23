@@ -73,7 +73,14 @@ so that when index page is run, a null pointer exception won't occur since the o
         password = request.getParameter("password");
     }%>
    
-    <%! int phone = 123; %>
+    <%  int phone;
+    if(request.getParameter("phone") == null){
+        phone = 0;}
+    else{
+        phone = Integer.parseInt(request.getParameter("phone"));
+    }%>
+        
+        %>
    
    <!-- Creation of session -->     
 <%

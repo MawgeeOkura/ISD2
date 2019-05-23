@@ -1,6 +1,6 @@
 <%-- 
-    Document   : registercheck
-    Created on : 24/05/2019, 9:09:30 AM
+    Document   : registerviewaction
+    Created on : 24/05/2019, 9:51:06 AM
     Author     : Mawgee-PC
 --%>
 <%@page import="oms.Model.*"%>
@@ -11,17 +11,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Register Check Action</title>
+        <title>Register View Action</title>
     </head>
     <body>
-        
-    <% 
+           <% 
      Register updateuser = (Register) session.getAttribute("loggedin");
             
      if(updateuser.getEmail() != "error"){
          
       
-         response.sendRedirect("registerupdatedelete.jsp");  
+         response.sendRedirect("registerview.jsp");  
      } else {
          
         response.sendRedirect("registernotloggedin.jsp");   
@@ -30,7 +29,6 @@
 
         
         %> 
-        
         
         
     </body>

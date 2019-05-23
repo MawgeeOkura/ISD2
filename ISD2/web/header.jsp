@@ -97,7 +97,7 @@ String link;
         <button class="dropbtn"> Account Management <i class="fa fa-caret-down"></i> </button>
     <div class="dropdown-content">
         <a href="../user/accesslogs.jsp">View Access Logs</a>
-        <a href="../user/registerview.jsp">View Account Details</a>
+        <a href="../user/registerviewaction.jsp">View Account Details</a>
         <a href="../user/registercheckaction.jsp">Update/Delete Account Details</a>
  
     </div>

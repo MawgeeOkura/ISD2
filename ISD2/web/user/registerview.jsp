@@ -42,8 +42,8 @@
                     disabled = false;
                     firstname = customer.getFirstName();
                     lastname  = customer.getLastName();
-                    email     = viewuser.getEmail();
-                    phone     = Integer.toString(viewuser.getPhone());
+                    email     = customer.getEmail();
+                    phone     = customer.getPhone();
                 } 
                 else{
                     disabled = true;

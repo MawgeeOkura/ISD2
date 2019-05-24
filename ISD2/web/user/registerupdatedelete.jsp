@@ -17,7 +17,7 @@
              String firstname;
              String lastname;
              
-             int phone;
+             String phone;
              String password;
              String message1;
            %> 
@@ -37,16 +37,16 @@
                     message1  = "";
                     firstname = customer.getFirstName();
                     lastname  = customer.getLastName();
-                    email     = updateuser.getEmail();
-                    phone     = updateuser.getPhone();
-                    password  = updateuser.getPassword();
+                    email     = customer.getEmail();
+                    phone     = customer.getPhone();
+                    password  = customer.getPassword();
                 } 
                 else{
                     message1 ="Please login to update or delete details";
                     firstname = "";
                     lastname = "";
                     email    = "";
-                    phone    = 0;
+                    phone    = "";
                     password = "";
                    
                    

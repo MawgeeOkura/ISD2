@@ -45,7 +45,7 @@
                        User Login
                     </p>
                 </div>
-                    <form action="loginaction.jsp" method="POST">
+                    <form action="index.jsp" method="POST">
                     
                 <div class="bodyBox">
                     <p>UserName:<input type="text" name="email" value="<%= username %>" required></p>

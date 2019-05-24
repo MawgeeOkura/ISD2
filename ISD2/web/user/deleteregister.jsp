@@ -33,7 +33,7 @@
             session.invalidate();
             %>    
             
-            <% response.setHeader("Refresh", "5;url=../index1.jsp"); %>.
+            <% response.setHeader("Refresh", "5;url=../index.jsp"); %>.
             
         
         
@@ -45,7 +45,7 @@
             <p> You will be redirected to home page in 5 seconds. </p>
             </br>
             
-            <p> If nothing happens click <a href="../index1.jsp">here</a> to go back to home page </p>
+            <p> If nothing happens click <a href="../index.jsp">here</a> to go back to home page </p>
             
             
         </div>

@@ -19,6 +19,8 @@
 <%!
 String option;
 String link;
+String registerlink;
+String register;
 %>
 
   <%  
@@ -29,17 +31,20 @@ String link;
  if(loginlogout.getEmail() != "error"){
     option="logout";
     link="logout.jsp";
-           
+    registerlink="";
+    register="";       
  } else {
-     option="login";
+     option="Login";
      link = "login.jsp";
+     registerlink="register.jsp";
+     register="Register";
  }
     %>   
     </head>
     <body>
       
            <ul >
-  <li><a class="active" href="index1.jsp">Home</a></li>
+  <li><a class="active" href="index.jsp">Home</a></li>
 
     <div class="dropdown">
         
@@ -105,7 +110,7 @@ String link;
   
   
     <li><a href="#about">Help</a></li>
-    
+       <li id="register"> <a href="<%= registerlink %>"> <%= register %> </a> </li>
     <li id="login"> <a href="<%= link %>"> <%= option %> </a> <li>
 </ul>
     </body>

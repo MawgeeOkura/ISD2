@@ -39,7 +39,7 @@
             if (customer == null) {
                 
                 manager.addCustomer(firstname,lastname ,password , email ,phone , createdate , paymentdetailsid);
-                response.sendRedirect("index1.jsp");  
+                response.sendRedirect("registerconfirmed.jsp");  
                
             }else{
                  response.sendRedirect("login.jsp"); 

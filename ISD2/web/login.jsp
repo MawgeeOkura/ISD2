@@ -4,6 +4,9 @@
     Author     : Mawgee.Okura
 --%>
 <%@page import="oms.Model.*" %>
+<%@page import="oms.Model.*"%>
+<%@page import="oms.DAO.*"%>
+<%@page import="java.util.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,11 +18,24 @@
     
     <% String message = "";  %>
     <% String username = "";  %>
-    <% Customer customer = (Customer) session.getAttribute("accountexists"); 
+    <% 
+        
+        Customer customer = (Customer) session.getAttribute("accountexists"); 
+        Customer loginexists = (Customer) session.getAttribute("accountdoesnotexist"); 
+         
     if(customer != null){
         username= customer.getEmail();
         message="Account already exists. Please login with credentials";
-    }    
+    } else {
+        
+    } 
+    if(loginexists != null){
+        
+        message="Account does not exist";
+    }
+    
+
+    
     %>
     <body bgcolor = "gray">
         <div>
@@ -29,11 +45,11 @@
                        User Login
                     </p>
                 </div>
-                    <form action="index1.jsp" method="POST">
+                    <form action="loginaction.jsp" method="POST">
                     
                 <div class="bodyBox">
-                    <p>UserName:<input type="text" name="email" value="<%= username %>"></p>
-                    <p>Password:<input type="password" name="password"></p>
+                    <p>UserName:<input type="text" name="email" value="<%= username %>" required></p>
+                    <p>Password:<input type="password" name="password" required></p>
                     <p> <input type="submit" value="Login">  <a href="register.jsp"><input type="button" value="Sign Up"></a>
                     </p>
                 </div>

@@ -46,6 +46,7 @@ so that when index page is run, a null pointer exception won't occur since the o
         session.setAttribute("numberOfCopies", null);
         session.setAttribute("status", null);
     %>
+    
    <% String firstname;
     if(request.getParameter("firstname") == null){
         firstname = "error";}
@@ -80,7 +81,7 @@ so that when index page is run, a null pointer exception won't occur since the o
         phone = Integer.parseInt(request.getParameter("phone"));
     }%>
         
-        %>
+      
    
    <!-- Creation of session -->     
 <%

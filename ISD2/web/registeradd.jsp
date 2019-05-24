@@ -4,6 +4,8 @@
     Author     : Mawgee.Okura
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
 <%@page import="oms.Model.*"%>
 <%@page import="oms.DAO.*"%>
 <%@page import="java.util.*"%>
@@ -20,14 +22,15 @@
         
         
         <%
-            
+            DateFormat currentdate = new SimpleDateFormat("yyyy-MM-dd"); //derby database has no datetime format
+            Date date = new Date();
             DBManager manager = (DBManager)session.getAttribute("db");
             String firstname = request.getParameter("firstname");
             String  lastname = request.getParameter("lastname");
             String  email = request.getParameter("email");
             String password = request.getParameter("password");
-            String phone = request.getParameter("phone");
-            String createdate = "2019-5-21";
+            String phone = request.getParameter("phonenumber");
+            String createdate = currentdate.format(date); 
             String paymentdetailsid = "1";
             
             
@@ -35,7 +38,7 @@
             
             if (customer == null) {
                 
-                manager.addCustomer(firstname,lastname ,email , password ,phone , createdate , paymentdetailsid);
+                manager.addCustomer(firstname,lastname ,password , email ,phone , createdate , paymentdetailsid);
                 response.sendRedirect("index1.jsp");  
                
             }else{

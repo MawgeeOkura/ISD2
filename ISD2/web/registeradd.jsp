@@ -31,14 +31,14 @@
             String password = request.getParameter("password");
             String phone = request.getParameter("phonenumber");
             String createdate = currentdate.format(date); 
-            String paymentdetailsid = "1";
+            
             
             
             Customer customer = manager.findCustomer(email); //difference between customer and register is that anyone can be registered not everyone can be customer
             
             if (customer == null) {
                 
-                manager.addCustomer(firstname,lastname ,password , email ,phone , createdate , paymentdetailsid);
+                manager.addCustomer(firstname,lastname ,password , email ,phone , createdate );
                 response.sendRedirect("registerconfirmed.jsp");  
                
             }else{

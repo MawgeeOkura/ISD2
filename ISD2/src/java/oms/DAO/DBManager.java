@@ -50,9 +50,9 @@ public class DBManager {
             String sEmail= resObj.getString("email");
             String sPhone = resObj.getString("phone");
             String sCreateDate = resObj.getString("createDate");
-            String sPaymentdetailsid = resObj.getString("paymentdetailsid");
+           
             
-            CustomerDB = new Customer (Integer.parseInt(sID),sFirstname , sLastname, sPassword , sEmail, sPhone , sCreateDate , Integer.parseInt(sPaymentdetailsid));
+            CustomerDB = new Customer (Integer.parseInt(sID),sFirstname , sLastname, sPassword , sEmail, sPhone , sCreateDate);
             
              System.out.println("customerfound");
         }
@@ -63,9 +63,9 @@ public class DBManager {
         
     }  
     
-    public void addCustomer(String firstname ,String lastname ,String password ,String email ,String phone,String createdate ,String paymentdetailsid) throws SQLException {
+    public void addCustomer(String firstname ,String lastname ,String password ,String email ,String phone,String createdate ) throws SQLException {
        
-    query = "INSERT INTO Customer (FIRSTNAME,LASTNAME,PASSWORD,EMAIL,PHONE,CREATEDATE,PAYMENTDETAILSID) values ('"+firstname+"','"+lastname+"','"+password+"','"+email+"','"+phone+"','"+createdate+"',"+paymentdetailsid+")";
+    query = "INSERT INTO Customer (FIRSTNAME,LASTNAME,PASSWORD,EMAIL,PHONE,CREATEDATE) values ('"+firstname+"','"+lastname+"','"+password+"','"+email+"','"+phone+"','"+createdate+"')";
                 
     st.executeUpdate(query);
         
@@ -73,9 +73,9 @@ public class DBManager {
     }
     
     
-    public void updateCustomer(int ID,String firstname ,String lastname ,String password  ,String phone,String createdate ,String paymentdetailsid) throws SQLException {
+    public void updateCustomer(int ID,String firstname ,String lastname ,String password  ,String phone,String createdate ) throws SQLException {
        
-    query = "UPDATE Customer SET FIRSTNAME = '"+firstname +"'  , LASTNAME ='"+lastname+"' , PASSWORD = '"+password+"'  , PHONE = '"+phone+"' , CREATEDATE='"+createdate+"' , PAYMENTDETAILSID= "+paymentdetailsid+" where ID="+ID+"";
+    query = "UPDATE Customer SET FIRSTNAME = '"+firstname +"'  , LASTNAME ='"+lastname+"' , PASSWORD = '"+password+"'  , PHONE = '"+phone+"' , CREATEDATE='"+createdate+"'  where ID="+ID+"";
    
     st.executeUpdate(query);
         

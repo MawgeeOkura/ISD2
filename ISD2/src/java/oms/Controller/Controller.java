@@ -25,7 +25,7 @@ public class Controller {
     
     public void registerCustomer(String firstname, String lastname , String password , String email , String phone , String createdate , String paymentdetailsid) throws SQLException{
         
-        manager.addCustomer(firstname, lastname, password, email, phone, createdate, paymentdetailsid);
+        manager.addCustomer(firstname, lastname, password, email, phone, createdate);
     
         
     }

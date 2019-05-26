@@ -17,12 +17,12 @@ public class Customer {
     private String email;
     private String phone;
     private String createDate;
-    private int paymentdetailsid;
+  
 
     public Customer() {
     }
 
-    public Customer(int id, String firstName, String lastName, String password, String email, String phone, String createDate, int paymentdetailsid) {
+    public Customer(int id, String firstName, String lastName, String password, String email, String phone, String createDate) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -30,7 +30,7 @@ public class Customer {
         this.email = email;
         this.phone = phone;
         this.createDate = createDate;
-        this.paymentdetailsid = paymentdetailsid;
+       
     }
 
     public int getId() {
@@ -89,13 +89,6 @@ public class Customer {
         this.createDate = createDate;
     }
 
-    public int getPaymentdetailsid() {
-        return paymentdetailsid;
-    }
-
-    public void setPaymentdetailsid(int paymentdetailsid) {
-        this.paymentdetailsid = paymentdetailsid;
-    }
     
     
 }

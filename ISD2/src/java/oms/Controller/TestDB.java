@@ -34,12 +34,12 @@ public class TestDB {
             String date ="2019-05-21";
             String memes ="hi";
             String number = "1";
-            db.addCustomer(email, email, email, email, email, date, number);
+            db.addCustomer(email, email, email, email, email, date);
             db.findCustomer(email);
            //find customer and delete based on ID 
             
            int ID=4;
-           db.updateCustomer(ID, memes, memes,  memes, date, date, number);
+           db.updateCustomer(ID, memes, memes,  memes, date, date);
                 
                     
         } catch (ClassNotFoundException cx) {

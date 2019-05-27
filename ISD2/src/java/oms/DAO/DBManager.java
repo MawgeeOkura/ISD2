@@ -18,6 +18,7 @@ public class DBManager {
     private Statement st;
     private ResultSet resObj;
     private String query;
+    private String query1;
     
     public DBManager(Connection conn) throws SQLException {
         st = conn.createStatement();
@@ -89,8 +90,28 @@ public class DBManager {
         
         
     }
-      
     
+    public boolean isValidEmail(String email){
+         String emailRegex = "^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$";
+        return email.matches(emailRegex);
+    }
+      
+    public boolean isValidName(String name){
+        String nameRegex ="[a-zA-Z]+";
+        
+        return name.matches(nameRegex);
+    
+    }
+    
+    public boolean isValidNumber(String number){
+        String numberRegex = "^[0-9]*$";
+        
+        return number.matches(numberRegex);
+    }
+    
+  
+    
+
   
     
   

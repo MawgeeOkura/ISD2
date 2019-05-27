@@ -31,21 +31,68 @@
             String password = request.getParameter("password");
             String phone = request.getParameter("phonenumber");
             String createdate = currentdate.format(date); 
+            Boolean valid = false;
+            
+            //check data validation 
+           
             
             
+         
             
+             if(!manager.isValidEmail(email)){
+              session.setAttribute("invalidEmail","Invalid Email");
+             }
+            
+             if(!manager.isValidName(firstname)){
+              session.setAttribute("invalidFirstname","Invalid Firstname");   
+             }
+             
+             if(!manager.isValidName(lastname)){
+             
+             session.setAttribute("invalidLastname","Invalid Lastname");
+             
+             }
+             
+             if(!manager.isValidNumber(phone)){
+              session.setAttribute("invalidphone","Invalid Phone");    
+             }
+             
+             if(manager.isValidName(firstname) && manager.isValidName(lastname) && manager.isValidEmail(email)){
+                 valid = true;
+             }
+           
+            
+            if(valid){
+                
             Customer customer = manager.findCustomer(email); //difference between customer and register is that anyone can be registered not everyone can be customer
-            
+           
             if (customer == null) {
                 
                 manager.addCustomer(firstname,lastname ,password , email ,phone , createdate );
-                response.sendRedirect("registerconfirmed.jsp");  
+                response.sendRedirect("registerconfirmed.jsp"); 
+                session.setAttribute("invalidLastname",null);
+                session.setAttribute("invalidFirstname",null);
+                session.setAttribute("invalidEmail",null);
+                session.setAttribute("invalidphone",null);   
+                
                
             }else{
                  response.sendRedirect("login.jsp"); 
                  session.setAttribute("accountexists", customer);
-                                             
-            }             
+                 session.setAttribute("invalidLastname",null);
+                 session.setAttribute("invalidFirstname",null);
+                 session.setAttribute("invalidEmail",null);
+                 session.setAttribute("invalidphone",null);                          
+            }       
+                
+            }else {
+                
+                response.sendRedirect("register.jsp");
+               
+             
+  
+                
+            }
                 %>
         
        

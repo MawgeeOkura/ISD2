@@ -31,7 +31,7 @@ public class DBManager {
  
     
      
-   
+   //find Customer in database based on email - Created by Mawgee Okura 
      public Customer findCustomer(String email) throws SQLException {
         
         query = "select * from customer where email='"+ email + "'";
@@ -65,6 +65,7 @@ public class DBManager {
         
     }  
     
+    //add Customer to customer table in database - Created by Mawgee Okura  
     public void addCustomer(String firstname ,String lastname ,String password ,String email ,String phone,String createdate ) throws SQLException {
        
     query = "INSERT INTO Customer (FIRSTNAME,LASTNAME,PASSWORD,EMAIL,PHONE,CREATEDATE,ROLEID) values ('"+firstname+"','"+lastname+"','"+password+"','"+email+"','"+phone+"','"+createdate+"',7)";
@@ -74,6 +75,7 @@ public class DBManager {
      
     }
     
+    //update Customer details in customer table in database - Created by Mawgee Okura 
     
     public void updateCustomer(int ID,String firstname ,String lastname ,String password  ,String phone,String createdate ) throws SQLException {
        
@@ -84,6 +86,8 @@ public class DBManager {
      
     }
     
+    //delete Customer details in customer table in database - Created by Mawgee Okura 
+    
     public void deleteCustomer(int ID) throws SQLException{
     
     query = "DELETE FROM CUSTOMER WHERE ID ="+ID+"";
@@ -91,6 +95,8 @@ public class DBManager {
         
         
     }
+    
+    //find Staff in Staff table based on email - Created by Mawgee Okura 
     
      public Staff findStaff(String email) throws SQLException {
         
@@ -125,17 +131,22 @@ public class DBManager {
         
     } 
     
+    //checks if Email is in valid format -- created by Mawgee Okura  
+     
     public boolean isValidEmail(String email){
          String emailRegex = "^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$";
         return email.matches(emailRegex);
     }
-      
+    
+     //checks there are no numbers in a string -- created by Mawgee Okura  
     public boolean isValidName(String name){
         String nameRegex ="[a-zA-Z]+";
         
         return name.matches(nameRegex);
     
     }
+    
+    //checks if there are no characters in a number -- created by Mawgee Okura 
     
     public boolean isValidNumber(String number){
         String numberRegex = "^[0-9]*$";
@@ -144,7 +155,7 @@ public class DBManager {
     }
     
     
-    
+    //checks if a user is a staff or a customer 
     public boolean validateRole(int number , String email) throws SQLException{
         Customer customer = findCustomer(email);
         Staff staff = findStaff(email);
@@ -168,9 +179,6 @@ public class DBManager {
     }
     
   
-    
-
-  
-    
+   
   
 }

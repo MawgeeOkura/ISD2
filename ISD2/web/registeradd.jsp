@@ -19,7 +19,7 @@
     </head>
     <body>
 
-        
+        <!-- retrieve details from form submission --> 
         
         <%
             DateFormat currentdate = new SimpleDateFormat("yyyy-MM-dd"); //derby database has no datetime format
@@ -34,10 +34,6 @@
             Boolean valid = false;
             
             //check data validation 
-           
-            
-            
-         
             
              if(!manager.isValidEmail(email)){
               session.setAttribute("invalidEmail","Invalid Email");
@@ -57,15 +53,20 @@
               session.setAttribute("invalidphone","Invalid Phone");    
              }
              
+             //if all fields are valid then set valid to true 
+             
              if(manager.isValidName(firstname) && manager.isValidName(lastname) && manager.isValidEmail(email)){
                  valid = true;
              }
            
-            
+            //when valid is true , check if customer already exists in database 
+             
             if(valid){
                 
             Customer customer = manager.findCustomer(email); //difference between customer and register is that anyone can be registered not everyone can be customer
            
+            
+            // if customer does not exist then add customer to database 
             if (customer == null) {
                 
                 manager.addCustomer(firstname,lastname ,password , email ,phone , createdate );
@@ -77,6 +78,7 @@
                 
                
             }else{
+             //if customer exists then redirect to login page and give warning. 
                  response.sendRedirect("login.jsp"); 
                  session.setAttribute("accountexists", customer);
                  session.setAttribute("invalidLastname",null);
@@ -88,10 +90,7 @@
             }else {
                 
                 response.sendRedirect("register.jsp");
-               
-             
-  
-                
+                 
             }
                 %>
         

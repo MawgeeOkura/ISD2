@@ -14,6 +14,9 @@
         <title>Register View Action</title>
     </head>
     <body>
+        
+    <!-- checks if user is logged in. If not then redirect user -->     
+        
            <% 
      Register updateuser = (Register) session.getAttribute("loggedin");
             

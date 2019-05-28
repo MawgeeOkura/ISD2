@@ -15,7 +15,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Register View</title>
-        
+        <!-- declare variables and connect to database and session --> 
         <%!   
             String firstname;
             String lastname;
@@ -30,12 +30,12 @@
              Register viewuser = (Register) session.getAttribute("loggedin");
            %>
            
-    
+        <!-- Find customer based on email --> 
               <%  String email = viewuser.getEmail();
                Customer customer = manager.findCustomer(email);     
             %> 
             
-            
+        <!-- If Customer is logged in then retrieve register details -->     
             <%
                 if(viewuser.getEmail() != "error"){
                     notice   = ""; 
@@ -73,16 +73,7 @@
             
             </br>
          
-        <!--    <input type="button" <c:if test="${!disabled}"><c:out value="disabled='disabled'"/></c:if>">
-            
-            <c:choose>
-                    <c:when test="${!disabled}">
-                            <button  value="SendEmail" disabled="disabled" > </button>
-                    </c:when>
-            <c:otherwise>
-                    <input type="submit" value="SendEmail"  >
-              </c:otherwise>
-</c:choose> --> 
+      
         </div> 
     </body>
 </html>

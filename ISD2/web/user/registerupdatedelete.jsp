@@ -12,11 +12,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
- 
+ <!-- declare variables and connect to database and session --> 
        <%!  
              String firstname;
              String lastname;
-             
              String phone;
              String password;
              String message1;
@@ -31,7 +30,7 @@
                Customer customer = manager.findCustomer(email);     
             %> 
             
-            
+       <!-- If Customer is logged in then retrieve register details -->            
          <%
                 if(updateuser.getEmail() != "error"){
                     message1  = "";
@@ -65,6 +64,8 @@
    
       
     </head>
+    
+    <!-- Javascript for popup message  --> 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>    
     <script type="text/javascript">
       $(function () {
@@ -78,6 +79,9 @@
             });
         });  
     </script>  
+    
+    
+    <!-- Displays register details. Disable ability to update email as that is its username --> 
     <body onload="checkdisable()">
         
         <h2>Update Account Details </h2>
@@ -88,29 +92,29 @@
             
          <form action="registerupdateaction.jsp" method="POST">
             <tr>
-                <td> <label> email: </label> </td>
+                <td> <label> Email: </label> </td>
                 <td><input type="text" name="email" value="<%=email%>" disabled > <br> <br> </td>
             </tr>
             
             <tr>
-                <td> <label> firstname: </label> </td> 
+                <td> <label> First Name: </label> </td> 
                 <td> <input type="text" name="firstname" value="<%=firstname%>" > <br> <br> </td>
             </tr>
             
             <tr>
-                <td> <label> lastname: </label> </td> 
+                <td> <label> Last Name: </label> </td> 
                 <td> <input type="text" name="lastname" value="<%=lastname%>"> <br> <br> </td>
             </tr>
            
             
             <tr>
-                <td> <label> password:</label> </td>
+                <td> <label> Password:</label> </td>
                 <td> <input type="password" name="password" value="<%=password%>" > <br> <br>  </td> 
             
             </tr>
             
              <tr>
-                <td> <label> phonenumber: </label> </td> 
+                <td> <label> Phone Number: </label> </td> 
                 <td> <input type="text" name="phonenumber" value="<%=phone%>"><br> <br> </td>
             </tr>
           

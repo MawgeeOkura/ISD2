@@ -17,12 +17,12 @@ public class Customer {
     private String email;
     private String phone;
     private String createDate;
-  
+    private int roleId; 
 
     public Customer() {
     }
 
-    public Customer(int id, String firstName, String lastName, String password, String email, String phone, String createDate) {
+    public Customer(int id, String firstName, String lastName, String password, String email, String phone, String createDate, int roleId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -30,7 +30,7 @@ public class Customer {
         this.email = email;
         this.phone = phone;
         this.createDate = createDate;
-       
+        this.roleId = roleId;
     }
 
     public int getId() {
@@ -89,6 +89,16 @@ public class Customer {
         this.createDate = createDate;
     }
 
+    public int getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
+    }
+  
+
+   
     
     
 }

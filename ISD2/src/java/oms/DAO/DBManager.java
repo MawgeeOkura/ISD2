@@ -51,9 +51,10 @@ public class DBManager {
             String sEmail= resObj.getString("email");
             String sPhone = resObj.getString("phone");
             String sCreateDate = resObj.getString("createDate");
+            String sRoleId = resObj.getString("roleId");
            
             
-            CustomerDB = new Customer (Integer.parseInt(sID),sFirstname , sLastname, sPassword , sEmail, sPhone , sCreateDate);
+            CustomerDB = new Customer (Integer.parseInt(sID),sFirstname , sLastname, sPassword , sEmail, sPhone , sCreateDate ,Integer.parseInt(sRoleId));
             
              System.out.println("customerfound");
         }
@@ -66,7 +67,7 @@ public class DBManager {
     
     public void addCustomer(String firstname ,String lastname ,String password ,String email ,String phone,String createdate ) throws SQLException {
        
-    query = "INSERT INTO Customer (FIRSTNAME,LASTNAME,PASSWORD,EMAIL,PHONE,CREATEDATE) values ('"+firstname+"','"+lastname+"','"+password+"','"+email+"','"+phone+"','"+createdate+"')";
+    query = "INSERT INTO Customer (FIRSTNAME,LASTNAME,PASSWORD,EMAIL,PHONE,CREATEDATE,ROLEID) values ('"+firstname+"','"+lastname+"','"+password+"','"+email+"','"+phone+"','"+createdate+"',7)";
                 
     st.executeUpdate(query);
         
@@ -91,6 +92,39 @@ public class DBManager {
         
     }
     
+     public Staff findStaff(String email) throws SQLException {
+        
+        query = "select * from Staff where email='"+ email + "'";
+        
+        resObj = st.executeQuery(query);
+        
+        boolean hasStaff = resObj.next();
+        
+        Staff staffDB = null;
+        
+        if(hasStaff){
+            
+            String sID = resObj.getString("ID");
+            String sFirstname = resObj.getString("firstName");
+            String sLastname = resObj.getString("lastName");
+            String sPassword = resObj.getString("password");
+            String sEmail= resObj.getString("email");
+            String sPhone = resObj.getString("phone");
+            String sCreateDate = resObj.getString("createDate");
+            String sRoleId = resObj.getString("roleId");
+           
+            
+            staffDB= new Staff (Integer.parseInt(sID),sFirstname , sLastname, sPassword , sEmail, sPhone , sCreateDate ,Integer.parseInt(sRoleId));
+            
+             System.out.println("staff found");
+        }
+        
+        resObj.close();
+        
+        return staffDB;
+        
+    } 
+    
     public boolean isValidEmail(String email){
          String emailRegex = "^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$";
         return email.matches(emailRegex);
@@ -107,6 +141,30 @@ public class DBManager {
         String numberRegex = "^[0-9]*$";
         
         return number.matches(numberRegex);
+    }
+    
+    
+    
+    public boolean validateRole(int number , String email) throws SQLException{
+        Customer customer = findCustomer(email);
+        Staff staff = findStaff(email);
+        Boolean isvalid = false;
+        
+        if(customer != null){
+            if(customer.getRoleId() == number){
+                isvalid = true;
+            }
+        } else {
+            if(staff != null){
+                if(staff.getRoleId() == number){
+                    isvalid = true;
+                }
+                
+            }
+            
+        }
+       
+        return isvalid;
     }
     
   

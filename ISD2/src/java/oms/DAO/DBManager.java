@@ -89,8 +89,10 @@ public class DBManager {
     //delete Customer details in customer table in database - Created by Mawgee Okura 
     
     public void deleteCustomer(int ID) throws SQLException{
-    
+        
+    query1 = "DELETE FROM USER WHERE USER.CUSTOMERID="+ID+"";
     query = "DELETE FROM CUSTOMER WHERE ID ="+ID+"";
+    st.executeUpdate(query1);
     st.executeUpdate(query);
         
         
@@ -160,14 +162,23 @@ public class DBManager {
         Customer customer = findCustomer(email);
         Staff staff = findStaff(email);
         Boolean isvalid = false;
+        int ID = (customer.getRoleId());
         
         if(customer != null){
-            if(customer.getRoleId() == number){
+            query = "select permission from ROLE where permission='Customer' AND ID='"+ ID + "'"; 
+           
+            ResultSet isCustomer = st.executeQuery(query);
+            
+            if(isCustomer !=null){
                 isvalid = true;
             }
         } else {
             if(staff != null){
-                if(staff.getRoleId() == number){
+            
+            query = "select permission from ROLE where permission='Staff' AND ID='"+ ID + "'"; 
+           
+            ResultSet isStaff = st.executeQuery(query);
+                if(isStaff != null){
                     isvalid = true;
                 }
                 

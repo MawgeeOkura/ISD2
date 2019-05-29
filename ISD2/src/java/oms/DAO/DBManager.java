@@ -52,9 +52,9 @@ public class DBManager {
             String sPhone = resObj.getString("phone");
             String sCreateDate = resObj.getString("createDate");
             String sRoleId = resObj.getString("roleId");
-           
+            String sPaymentdetailsid = resObj.getString("paymentdetailsid");
             
-            CustomerDB = new Customer (Integer.parseInt(sID),sFirstname , sLastname, sPassword , sEmail, sPhone , sCreateDate ,Integer.parseInt(sRoleId));
+            CustomerDB = new Customer (Integer.parseInt(sID),sFirstname , sLastname, sPassword , sEmail, sPhone , sCreateDate ,Integer.parseInt(sRoleId) ,Integer.parseInt(sPaymentdetailsid));
             
              System.out.println("customerfound");
         }
@@ -188,6 +188,54 @@ public class DBManager {
        
         return isvalid;
     }
+    
+        public Payment findPayment(int id) throws SQLException {
+        
+        query = "select * from paymentdetails where id="+ id + "";
+        
+        resObj = st.executeQuery(query);
+        
+        boolean hasPayment = resObj.next();
+        
+        Payment PaymentDB = null;
+        
+        if(hasPayment){
+            
+            String ID = resObj.getString("ID");
+            String cardNumber = resObj.getString("CARDNUMBER");
+            String cvc = resObj.getString("CVC");
+            String expiryMonth = resObj.getString("EXPIRYMONTH");
+            String expiryYear = resObj.getString("EXPIRYYEAR");
+            String address = resObj.getString("ADDRESS1");
+            String state = resObj.getString("STATE");
+            String postCode = resObj.getString("POSTCODE");
+            
+            PaymentDB = new Payment (Integer.parseInt(ID),cardNumber,Integer.parseInt(cvc),expiryMonth,Integer.parseInt(expiryYear),address,state,Integer.parseInt(postCode));
+             
+        }
+        
+        resObj.close();
+        
+        return PaymentDB;
+        
+    }  
+    
+    public void updatePayment(int ID,String cardNumber ,int cvc ,String expiryMonth ,int expiryYear ,String address,String state ,int postCode) throws SQLException {
+       
+    query = "UPDATE paymentdetails SET CARDNUMBER = '"+cardNumber +"'  , CVC ="+cvc+" , EXPIRYMONTH = '"+expiryMonth+"' , EXPIRYYEAR = "+expiryYear+" , ADDRESS1 = '"+address+"' , STATE='"+state+"' , POSTCODE= "+postCode+" where ID="+ID+"";
+   
+    st.executeUpdate(query);
+        
+    }
+    
+    public void addPayment(String cardNumber ,int cvc ,String expiryMonth ,int expiryYear ,String address,String state ,int postCode) throws SQLException {
+       
+    query = "INSERT INTO paymentdetails (CARDNUMBER,CVC,EXPIRYMONTH,EXPIRYYEAR,ADDRESS1,ADDRESS2,STATE,POSTCODE) values ('"+cardNumber+"',"+cvc+",'"+expiryMonth+"',"+expiryYear+",'"+address+"','"+"','"+state+"',"+postCode+")";
+                
+    st.execute(query);
+   
+    }
+    
     
   
    

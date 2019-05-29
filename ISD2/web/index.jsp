@@ -30,13 +30,7 @@ so that when index page is run, a null pointer exception won't occur since the o
             }
         }
         
-       Customer customer = db.findCustomer("33");
-       if(customer != null){
-           
-           message2= customer.getEmail();
-       } else {
-           message2 = "customer not found";
-       }
+      
         session.setAttribute("selectedMovie", null);
         session.setAttribute("error", null);
         session.setAttribute("name", null);
@@ -81,7 +75,15 @@ so that when index page is run, a null pointer exception won't occur since the o
         phone = Integer.parseInt(request.getParameter("phone"));
     }%>
         
-      
+    <%
+         Customer customer = db.findCustomer(email);
+       if(customer != null){
+           
+           message2= customer.getEmail();
+       } else {
+           message2 = "customer not found";
+       }
+        %>
    
    <!-- Creation of session -->     
 <%

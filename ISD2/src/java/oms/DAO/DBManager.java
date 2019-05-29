@@ -64,10 +64,45 @@ public class DBManager {
         return CustomerDB;
         
     }  
+     
+       public Customer findCustomerbasedonID(int id) throws SQLException {
+        
+        query = "select * from customer where ID='"+ id + "'";
+        
+        resObj = st.executeQuery(query);
+        
+        boolean hasCustomer = resObj.next();
+        
+        Customer CustomerDB = null;
+        
+        if(hasCustomer){
+            
+            String sID = resObj.getString("ID");
+            String sFirstname = resObj.getString("firstName");
+            String sLastname = resObj.getString("lastName");
+            String sPassword = resObj.getString("password");
+            String sEmail= resObj.getString("email");
+            String sPhone = resObj.getString("phone");
+            String sCreateDate = resObj.getString("createDate");
+            String sRoleId = resObj.getString("roleId");
+            int sPaymentdetailsid = retrievemostrecentpayment();
+            
+            CustomerDB = new Customer (Integer.parseInt(sID),sFirstname , sLastname, sPassword , sEmail, sPhone , sCreateDate ,Integer.parseInt(sRoleId) ,sPaymentdetailsid);
+            updateCustomerpaymentId(Integer.parseInt(sID), sPaymentdetailsid);
+             System.out.println("customerfound");
+        }
+        
+        resObj.close();
+        
+        return CustomerDB;
+        
+    }  
     
     //add Customer to customer table in database - Created by Mawgee Okura  
     public void addCustomer(String firstname ,String lastname ,String password ,String email ,String phone,String createdate ) throws SQLException {
-       
+    
+    createPaymentId();   
+    
     query = "INSERT INTO Customer (FIRSTNAME,LASTNAME,PASSWORD,EMAIL,PHONE,CREATEDATE,ROLEID) values ('"+firstname+"','"+lastname+"','"+password+"','"+email+"','"+phone+"','"+createdate+"',7)";
                 
     st.executeUpdate(query);
@@ -188,6 +223,43 @@ public class DBManager {
        
         return isvalid;
     }
+    //create paymentId for user -- Created by Mawgee Okura 
+        public void createPaymentId() throws SQLException{
+        
+         addPayment( "", 0, "", 0, "", "", 0);
+       
+        }
+        
+        public int retrievemostrecentpayment() throws SQLException{
+        
+         int sID = 0;   
+          query = "select max(id) as ID from paymentdetails";
+          
+          resObj = st.executeQuery(query);
+          
+          if(resObj.next()){
+              sID = Integer.parseInt(resObj.getString("ID"));
+          } 
+          return sID;
+        }
+        
+         public int retrievemostrecentcustomer() throws SQLException{
+        
+         int sID = 0;   
+          query = "select max(id) as ID from CUSTOMER";
+          
+          resObj = st.executeQuery(query);
+          
+          if(resObj.next()){
+              sID = Integer.parseInt(resObj.getString("ID"));
+          } 
+          return sID;
+        }
+        
+        public void updateCustomerpaymentId(int customerid,int payid) throws SQLException{
+            query = "UPDATE CUSTOMER SET PAYMENTDETAILSID="+payid+" WHERE ID="+customerid+"";
+            
+        }
     
         public Payment findPayment(int id) throws SQLException {
         

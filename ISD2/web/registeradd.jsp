@@ -33,6 +33,7 @@
             String createdate = currentdate.format(date); 
             Boolean valid = false;
             
+            
             //check data validation 
             
              if(!manager.isValidEmail(email)){
@@ -69,14 +70,17 @@
             // if customer does not exist then add customer to database 
             if (customer == null) {
                 
+                
                 manager.addCustomer(firstname,lastname ,password , email ,phone , createdate );
                 response.sendRedirect("registerconfirmed.jsp"); 
                 session.setAttribute("invalidLastname",null);
                 session.setAttribute("invalidFirstname",null);
                 session.setAttribute("invalidEmail",null);
                 session.setAttribute("invalidphone",null);   
-                
-               
+                session.setAttribute("registeredemail",email);
+                int id= manager.retrievemostrecentcustomer();
+                int payid = manager.retrievemostrecentpayment();
+                manager.updateCustomerpaymentId(id, payid);
             }else{
              //if customer exists then redirect to login page and give warning. 
                  response.sendRedirect("login.jsp"); 

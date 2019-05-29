@@ -51,7 +51,7 @@
             <div class="cardBox2">
                 <div class="headerBox">
                     <p>
-                        Payment dital
+                        Payment detail
                     </p>
                 </div>
                 <div class="bodyBox">

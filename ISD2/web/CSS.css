@@ -132,6 +132,8 @@ tr:nth-child(even) {
 /* Add padding to containers */
 
 /* Full-width input fields */
+
+
 input[type=text], input[type=password] {
   width: 100%;
   padding: 15px;
@@ -202,7 +204,7 @@ hr {
                 text-align: center;
                 margin-right: 10px;
                 padding: 5px;
-                padding-top: 15px;
+                padding-top: 200px;
                 margin: auto;
                 position: absolute;
                 left: 50%;
@@ -211,20 +213,102 @@ hr {
             }
 
             .headerBox {
-                color: #fff;
-                padding: 5px;
-                font-size: 15px;
-                height: 30px;
+                padding: 10px;
+                font-size: 25px;
+                height: 60px;
+                background-color: black;
+                color:white;
             }
 
             .bodyBox {
                 padding: 10px;
+                text-align:center;
+                font-size: 15px;
             }
 
             .bodyBox p {
-                margin-left: 5px;
+                margin-left: 10px;
+                text-indent:2em;
             }
-
+            
+            .cardBox2 {
+                width: 800px;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                margin-right: 10px;
+                padding: 5px;
+                padding-top: 15px;
+                margin: auto;
+                position: absolute;
+                left: 50%;
+                top: 35%;
+                transform: translate(-50%,-50%);
+                text-align: left;
+                
+            }
+            
+            .inputLine {
+                border-bottom: 1px solid #dbdbdb;  
+                border-top:0px;  
+                border-left:0px;  
+                border-right:0px;  
+                width:40px;
+            }
+            
+            .inputLineLong {
+                border-bottom: 1px solid #dbdbdb;  
+                border-top:0px;  
+                border-left:0px;  
+                border-right:0px;  
+                width:200px;
+            }
+            
+            .inputLineVeryLong {
+                border-bottom: 1px solid #dbdbdb;  
+                border-top:0px;  
+                border-left:0px;  
+                border-right:0px;  
+                width:500px;
+            }
+            
+            .round_button {
+		padding: 5px 40px;
+                border-radius: 5px;
+                border: 0px; 
+            }
+            
+            .blue {
+                color: white;
+                background: #66B3FF;
+		background: -moz-linear-gradient(top, #66B3FF 0%, #2828FF 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #66B3FF), color-stop(100%, #2828FF));
+		background: -webkit-linear-gradient(top, #66B3FF 0%, #2828FF 100%);
+		background: -o-linear-gradient(top, #66B3FF 0%, #2828FF 100%);
+		background: -ms-linear-gradient(top, #66B3FF 0%, #2828FF 100%);
+		background: linear-gradient(top, #66B3FF 0%, #2828FF 100%);               
+            }
+            
+            .blue:active {
+                color: white;
+                background: #66B3FF;
+		background: -moz-linear-gradient(top, #66B3FF 0%, #0000C6 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #66B3FF), color-stop(100%, #0000C6));
+		background: -webkit-linear-gradient(top, #66B3FF 0%, #0000C6 100%);
+		background: -o-linear-gradient(top, #66B3FF 0%, #0000C6 100%);
+		background: -ms-linear-gradient(top, #66B3FF 0%, #0000C6 100%);
+		background: linear-gradient(top, #66B3FF 0%, #0000C6 100%);               
+            }
+            
+            .cost {
+                font-size: 15px;
+                font-weight:bold;
+                text-align: right;
+            }
+            
+            .cvcImage {
+                 position:relative; 
+                 z-index: 2;
+                 width: 366px;
+            }
 
 
 

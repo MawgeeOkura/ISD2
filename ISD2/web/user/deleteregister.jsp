@@ -26,7 +26,7 @@
             Register viewuser = (Register) session.getAttribute("loggedin");
             DBManager manager = (DBManager)session.getAttribute("db");
              Customer customer = manager.findCustomer(viewuser.getEmail());
-             manager.deleteCustomer(customer.getId());
+             manager.deleteCustomer(customer.getId(),customer.getPaymentdetailsid());
             %>  
             
              <%  

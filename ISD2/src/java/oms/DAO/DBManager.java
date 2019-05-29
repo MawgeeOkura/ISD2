@@ -19,6 +19,7 @@ public class DBManager {
     private ResultSet resObj;
     private String query;
     private String query1;
+    private String query2;
     
     public DBManager(Connection conn) throws SQLException {
         st = conn.createStatement();
@@ -53,7 +54,9 @@ public class DBManager {
             String sCreateDate = resObj.getString("createDate");
             String sRoleId = resObj.getString("roleId");
             String sPaymentdetailsid = resObj.getString("paymentdetailsid");
-            
+            if(sPaymentdetailsid == null ){
+            sPaymentdetailsid = "0";
+            }
             CustomerDB = new Customer (Integer.parseInt(sID),sFirstname , sLastname, sPassword , sEmail, sPhone , sCreateDate ,Integer.parseInt(sRoleId) ,Integer.parseInt(sPaymentdetailsid));
             
              System.out.println("customerfound");
@@ -85,10 +88,12 @@ public class DBManager {
             String sPhone = resObj.getString("phone");
             String sCreateDate = resObj.getString("createDate");
             String sRoleId = resObj.getString("roleId");
-            int sPaymentdetailsid = retrievemostrecentpayment();
+            String sPaymentdetailsid = resObj.getString("paymentdetailsid");
+            if(sPaymentdetailsid == null){
+                sPaymentdetailsid = Integer.toString(retrievemostrecentpayment());
+            }
+            CustomerDB = new Customer (Integer.parseInt(sID),sFirstname , sLastname, sPassword , sEmail, sPhone , sCreateDate ,Integer.parseInt(sRoleId) ,Integer.parseInt(sPaymentdetailsid));
             
-            CustomerDB = new Customer (Integer.parseInt(sID),sFirstname , sLastname, sPassword , sEmail, sPhone , sCreateDate ,Integer.parseInt(sRoleId) ,sPaymentdetailsid);
-            updateCustomerpaymentId(Integer.parseInt(sID), sPaymentdetailsid);
              System.out.println("customerfound");
         }
         
@@ -99,11 +104,11 @@ public class DBManager {
     }  
     
     //add Customer to customer table in database - Created by Mawgee Okura  
-    public void addCustomer(String firstname ,String lastname ,String password ,String email ,String phone,String createdate ) throws SQLException {
+    public void addCustomer(String firstname ,String lastname ,String password ,String email ,String phone,String createdate) throws SQLException {
     
     createPaymentId();   
-    
-    query = "INSERT INTO Customer (FIRSTNAME,LASTNAME,PASSWORD,EMAIL,PHONE,CREATEDATE,ROLEID) values ('"+firstname+"','"+lastname+"','"+password+"','"+email+"','"+phone+"','"+createdate+"',7)";
+    int paymentdetailsid = retrievemostrecentpayment();
+    query = "INSERT INTO Customer (FIRSTNAME,LASTNAME,PASSWORD,EMAIL,PHONE,CREATEDATE,PAYMENTDETAILSID,ROLEID) values ('"+firstname+"','"+lastname+"','"+password+"','"+email+"','"+phone+"','"+createdate+"',"+paymentdetailsid+",7)";
                 
     st.executeUpdate(query);
         
@@ -123,13 +128,14 @@ public class DBManager {
     
     //delete Customer details in customer table in database - Created by Mawgee Okura 
     
-    public void deleteCustomer(int ID) throws SQLException{
+    public void deleteCustomer(int ID, int payID) throws SQLException{
         
-    query1 = "DELETE FROM USER WHERE USER.CUSTOMERID="+ID+"";
+    /*query1 = "DELETE FROM 'USER' U WHERE U.CUSTOMERID="+ID+"";
+    query2 = "DELETE FROM PAYMENTDETAILS P WHERE P.ID="+payID+"";
     query = "DELETE FROM CUSTOMER WHERE ID ="+ID+"";
     st.executeUpdate(query1);
     st.executeUpdate(query);
-        
+        */
         
     }
     
@@ -192,7 +198,7 @@ public class DBManager {
     }
     
     
-    //checks if a user is a staff or a customer 
+    //checks if a user is a staff or a customer  can implement after merge.
     public boolean validateRole(int number , String email) throws SQLException{
         Customer customer = findCustomer(email);
         Staff staff = findStaff(email);
@@ -229,7 +235,7 @@ public class DBManager {
          addPayment( "", 0, "", 0, "", "", 0);
        
         }
-        
+     //retrieve the most recent payment record -- Created by Mawgee Okura    
         public int retrievemostrecentpayment() throws SQLException{
         
          int sID = 0;   
@@ -242,7 +248,7 @@ public class DBManager {
           } 
           return sID;
         }
-        
+      //retrieve the most recent payment record -- Created by Mawgee Okura    
          public int retrievemostrecentcustomer() throws SQLException{
         
          int sID = 0;   
@@ -256,10 +262,11 @@ public class DBManager {
           return sID;
         }
         
-        public void updateCustomerpaymentId(int customerid,int payid) throws SQLException{
+       /* public void updateCustomerpaymentId(int customerid,int payid) throws SQLException{
             query = "UPDATE CUSTOMER SET PAYMENTDETAILSID="+payid+" WHERE ID="+customerid+"";
             
-        }
+        } */
+
     
         public Payment findPayment(int id) throws SQLException {
         

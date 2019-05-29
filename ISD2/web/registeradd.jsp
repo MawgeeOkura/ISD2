@@ -78,9 +78,7 @@
                 session.setAttribute("invalidEmail",null);
                 session.setAttribute("invalidphone",null);   
                 session.setAttribute("registeredemail",email);
-                int id= manager.retrievemostrecentcustomer();
-                int payid = manager.retrievemostrecentpayment();
-                manager.updateCustomerpaymentId(id, payid);
+                
             }else{
              //if customer exists then redirect to login page and give warning. 
                  response.sendRedirect("login.jsp"); 

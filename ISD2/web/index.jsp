@@ -94,7 +94,7 @@ so that when index page is run, a null pointer exception won't occur since the o
             %>
     <!-- Inclusion of header and footer -->  
     
-<jsp:include page="headerindex.jsp" />
+<jsp:include page="header.jsp" />
 <jsp:include page="footer.jsp" />
 <html>
     <head>

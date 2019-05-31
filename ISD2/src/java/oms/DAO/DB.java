@@ -12,11 +12,11 @@ import java.sql.Connection;
  * @author clint
  */
 public abstract class DB {
-    protected String URL = "jdbc:derby://localhost:1527/omsdatabase";
+    protected String URL = "jdbc:derby://localhost:1527/omsfinal";
     protected String db =  "OMOA_DB";
     protected String dbUser = "Mawgee";
     protected String dbPass = "Okura";
-    protected String driver = "com.mysql.jdbc.Driver"; //I'm not sure what this is for mysql
+    protected String driver = "org.apache.derby.jdbc.ClientDriver"; //I'm not sure what this is for mysql
 //    protected String driver = "org.apache.mysql.ClientDriver"; //I'm not sure what this is for mysql
     protected Connection conn;
 }

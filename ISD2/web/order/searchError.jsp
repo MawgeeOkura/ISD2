@@ -1,11 +1,12 @@
 <%-- 
-    Document   : viewshipment
-    Created on : 08/05/2019, 11:31:05 AM
-    Author     : Max.Okura
+    Document   : searchError
+    Created on : 2019-5-27, 15:28:39
+    Author     : 19738
 --%>
 <link href="../CSS.css" rel="stylesheet" type="text/css">
 <%@include file="../header.jsp"%>
 <%@include file="../footer.jsp"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,6 +15,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>No match with your search</h1>
     </body>
 </html>

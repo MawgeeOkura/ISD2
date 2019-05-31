@@ -5,9 +5,25 @@
  */
 package oms.DAO;
 
-import oms.Model.*;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import oms.Model.Movie;
+import oms.Model.Staff;
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Random;
+import oms.Model.Customer;
+import oms.Model.Order;
+import oms.Model.OrderDetails;
+import oms.Model.Payment;
+import oms.Model.User;
 
 /**
  *
@@ -20,6 +36,11 @@ public class DBManager {
     private String query;
     private String query1;
     private String query2;
+    private final String CUSTOMER = "CUSTOMER";
+    private final String FULL_ACCESS = "FULL_ACCESS";
+    private final String STAFF = "STAFF";
+    private final String ADMINISTRATOR = "ADMINISTRATOR";
+    private final String ACTIVE = "ACTIVE";
     
     public DBManager(Connection conn) throws SQLException {
         st = conn.createStatement();
@@ -30,7 +51,26 @@ public class DBManager {
     }
     
  
-    
+    private ArrayList<Movie> setMovies(ResultSet resObj) throws SQLException {
+//        System.out.println("setMovies()");
+        ArrayList<Movie> movies = new ArrayList<>();
+        while (resObj.next()) {
+            Movie movie = new Movie();
+            movie.setId(resObj.getLong("id"));
+            movie.setName(resObj.getString("name"));
+            movie.setDescription(resObj.getString("description"));
+            movie.setGenre(resObj.getString("genre"));
+            movie.setReleaseDate(resObj.getString("releaseDate"));
+            movie.setRuntime(resObj.getInt("runtime"));
+            movie.setKeywords(resObj.getString("keywords"));
+            movie.setRating(resObj.getFloat("rating"));
+            movie.setPrice(resObj.getDouble("price"));
+            movie.setStatus(resObj.getString("status"));
+            movie.setNumberOfCopies(resObj.getInt("numberOfCopies"));
+            movies.add(movie);
+        }
+        return movies;
+    }
      
    //find Customer in database based on email - Created by Mawgee Okura 
      public Customer findCustomer(String email) throws SQLException {

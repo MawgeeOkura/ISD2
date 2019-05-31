@@ -4,8 +4,8 @@
     Author     : Mawgee.Okura
 --%>
 <%@page import="oms.Model.*"%>
-<%@page import="oms.dao.*"%>
-<%@page import="oms.Controller.Controller.*"%>
+<%@page import="oms.DAO.*"%>
+<%@page import="oms.Controller.ConnServlet.*"%>
 <%@page import="java.util.*"%>
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" import="java.util.*" import="oms.Model.*" pageEncoding="UTF-8"%>
